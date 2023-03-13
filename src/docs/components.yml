@@ -46,7 +46,53 @@ components:
           type: number
         message:
           type: string
-
+    
+    Artwork:
+      type: object
+      properties:
+        title:
+          type: string
+          required: true
+        description:
+          type: string
+          required: true
+        artist:
+          type: string
+          format: objectId
+          required: true
+        type:
+          type: string
+          enum: [painting, photograph, sculpture, print, drawing]
+          required: true
+        price:
+          type: number
+          required: true
+          minimum: 0
+        quantity:
+          type: number
+          default: 1
+        imageUrls:
+          type: array
+          items:
+            type: string
+          required: true
+        tags:
+          type: array
+          items:
+            type: string
+        published:
+          type: boolean
+          default: false
+      example:
+        title: The Starry Night
+        description: A painting by Vincent van Gogh
+        artist: 5ebac534954b54139806c116
+        type: painting
+        price: 100.0
+        imageUrls:
+          - https://example.com/starry-night-1.jpg
+          - https://example.com/starry-night-2.jpg
+          
   responses:
     DuplicateEmail:
       description: Email already taken
